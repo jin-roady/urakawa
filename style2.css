@@ -1,0 +1,1356 @@
+@charset "UTF-8";
+
+/* =========================================
+   1. 基本設定 & 変数 (Modern Gothic Theme)
+   ========================================= */
+:root {
+    /* モダンなカラーパレット */
+    --primary-red: #D32F2F;
+    /* 深みのある鮮やかな赤 */
+    --primary-accent: #FFEBEE;
+    /* 赤系の薄い背景色 */
+    --text-black: #333333;
+    /* 視認性の高い黒 */
+    --text-gray: #666666;
+    /* 補足テキスト用 */
+    --bg-body: #F9FAFB;
+    /* クリーンな薄いグレー背景 */
+    --bg-white: #FFFFFF;
+    --border-color: #E0E0E0;
+
+    --font-main: 'Noto Sans JP', sans-serif;
+    /* ゴシック体 */
+    --radius-card: 12px;
+    /* 角丸の統一 */
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-body);
+    color: var(--text-black);
+    /* ノイズ画像背景を削除 */
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    /* フォントを滑らかに */
+}
+
+/* PCレイアウト */
+@media (min-width: 901px) {
+
+    html,
+    body {
+        overflow: hidden;
+        /* メインカラムのみスクロール */
+    }
+}
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        height: auto;
+        overflow: visible;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   2. ヘッダー
+   ========================================= */
+header {
+    height: 70px;
+    flex-shrink: 0;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    z-index: 100;
+    position: relative;
+}
+
+.logo {
+    /* 以前のフォント設定などは削除しても良いですが、
+       Flexboxで中央揃えにしておくと安定します */
+    display: flex;
+    align-items: center;
+}
+
+/* ロゴ画像のサイズ調整 */
+.logo img {
+    /* ヘッダーの高さが70pxなので、上下の余白を考えて40px〜50px程度が適切です */
+    height: 50px;
+    width: auto;
+    /* 比率を維持 */
+}
+
+/* ハンバーガーアイコン（三本線） */
+.menu-icon {
+    width: 30px;
+    /* アイコンの幅 */
+    height: 22px;
+    /* アイコンの高さ */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 3本の線を均等配置 */
+    cursor: pointer;
+    z-index: 200;
+    /* メニューが開いた時用に手前に表示 */
+}
+
+/* 線のスタイル */
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    /* 線の太さ */
+    background-color: #333;
+    /* 線の色 */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    /* アニメーション用 */
+}
+
+/* ホバー時に色を変える（お好みで） */
+.menu-icon:hover span {
+    background-color: var(--primary-red);
+}
+
+/* =========================================
+   3. メインレイアウト
+   ========================================= */
+.container {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 600px 250px;
+    /* 中央を少し広めに */
+    gap: 0;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 左右カラム（固定） --- */
+.section-hero,
+.section-nav {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #F4F6F8;
+    /* 左右は少しグレーに */
+}
+
+/* 左カラム */
+.section-hero {
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-banner-wrap {
+    padding: 20px;
+    opacity: 0.8;
+}
+
+/* 右カラム */
+.section-nav {
+    border-left: 1px solid var(--border-color);
+    padding: 40px 20px;
+}
+
+/* ナビゲーションボタン */
+.nav-sticky {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    text-decoration: none;
+    padding: 14px 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    /* 角丸 */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+    transform: none;
+    /* Skew削除 */
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+/* 強調ボタン */
+.nav-btn.primary {
+    background-color: var(--primary-red);
+    color: #fff;
+    border-color: var(--primary-red);
+}
+
+.nav-btn.primary:hover {
+    background-color: #b71c1c;
+}
+
+.nav-btn.dark {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+/* --- 中央カラム（スクロールエリア） --- */
+.section-content {
+    height: 100%;
+    overflow-y: auto;
+    text-align: center;
+    padding: 0;
+    /* パディング削除（内部で調整） */
+    background-color: var(--bg-white);
+
+    /* スクロールバー非表示 */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.section-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* スマホ対応 */
+@media (max-width: 900px) {
+    .container {
+        display: block;
+        height: auto;
+        padding: 0;
+    }
+
+    .section-hero {
+        display: none;
+    }
+
+    /* スマホでは左バナー非表示 */
+
+    .section-nav {
+        border: none;
+        padding: 30px 20px;
+        background: #fff;
+    }
+
+    .section-content {
+        height: auto;
+        overflow: visible;
+    }
+}
+
+/* =========================================
+   4. メインビジュアル (サイズ調整版)
+   ========================================= */
+.title-area-visual {
+    position: relative;
+    width: 100%;
+    /* 上下の余白を少し詰めて、間延びしないように調整 */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.img-hero-main {
+    width: 100%;
+    height: auto;
+
+    /* ▼▼▼ ここでサイズを調整 ▼▼▼ */
+
+    /* PCで表示した時に巨大になりすぎないよう制限 */
+    /* (500px〜600pxくらいが現代的でバランスが良いです) */
+    max-width: 550px;
+
+    /* 縦長の画像だった場合でも、画面の高さの70%に収める設定 */
+    max-height: 70vh;
+
+    /* アスペクト比を維持 */
+    object-fit: contain;
+
+    /* 中央揃え */
+    margin: 0 auto;
+
+    /* 装飾 */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+    animation: fadeInUp 1.0s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .title-area-visual {
+        padding: 40px 20px 30px;
+    }
+
+    .img-hero-main {
+        /* スマホでは少し大きめに見せる（幅の90%） */
+        max-width: 90%;
+        /* スマホの縦画面でも圧迫感がない高さに制限 */
+        max-height: 60vh;
+    }
+}
+
+/* =========================================
+   5. 共通パーツ & 見出し（High Impact Ver.）
+   ========================================= */
+.brush-heading-wrap {
+    position: relative;
+    margin: 90px auto 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* 筆画像（HTMLにあれば）は非表示 */
+.brush-bg {
+    display: none;
+}
+
+/* 見出しテキストの基本リセット */
+.brush-text {
+    position: relative;
+    margin: 0;
+    font-family: var(--font-main);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    z-index: 2;
+    /* 以前の下線をリセット */
+    padding: 0;
+    border: none;
+    text-shadow: none;
+}
+
+.brush-text::after {
+    display: none;
+    /* 以前の下線削除 */
+}
+
+/* ----------------------------------
+   パターンA: リボン風スタイル (ribbon-style)
+   赤背景・白文字で「キャンペーン感」を強調
+   ---------------------------------- */
+.ribbon-style .brush-text {
+    font-size: 1.8rem;
+    color: #fff;
+    background-color: var(--primary-red);
+    padding: 15px 60px;
+    /* 横幅を広く */
+
+    /* リボンの形状 */
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+
+    /* 左右の飾り（折り返し風） */
+    display: inline-block;
+    min-width: 300px;
+    /* 最低幅 */
+}
+
+.ribbon-style .brush-text::before {
+    left: 10px;
+}
+
+.ribbon-style .brush-text::after {
+    right: 10px;
+}
+
+/* ----------------------------------
+   パターンB: ステッチ風スタイル (stitch-style)
+   白背景・赤点線枠で「親しみやすさ」を強調
+   ---------------------------------- */
+.stitch-style .brush-text {
+    font-size: 1.8rem;
+    color: var(--primary-red);
+    background-color: #fff;
+    padding: 15px 50px;
+
+    /* ステッチ枠線 */
+    border: 3px dashed var(--primary-red);
+    border-radius: 50px;
+    /* 丸みのあるピル型 */
+
+    /* 浮き上がり効果 */
+    box-shadow:
+        0 0 0 5px #fff,
+        /* 外側の白い余白 */
+        0 5px 15px rgba(0, 0, 0, 0.08);
+    /* 影 */
+
+    display: inline-block;
+}
+
+/* 左右のアクセント（丸ポチ） */
+.stitch-style .brush-text::before,
+.stitch-style .brush-text::after {
+    content: '●';
+    font-size: 12px;
+    color: var(--primary-red);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.stitch-style .brush-text::before {
+    left: 20px;
+}
+
+.stitch-style .brush-text::after {
+    right: 20px;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .brush-heading-wrap {
+        margin: 60px auto 30px;
+    }
+
+    .ribbon-style .brush-text,
+    .stitch-style .brush-text {
+        font-size: 1.4rem;
+        /* 文字サイズ調整 */
+        padding: 12px 30px;
+        width: 80%;
+        /* 幅を画面に合わせる */
+        min-width: auto;
+    }
+}
+
+/* =========================================
+   6. 導入 & 理由
+   ========================================= */
+.intro-section {
+    padding: 0 20px;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 2;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+/* カード型理由セクション */
+.reason-container {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 40px 30px;
+    margin: 0 auto 50px;
+    max-width: 600px;
+}
+
+.reason-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-black);
+    margin-bottom: 30px;
+}
+
+.reason-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.reason-card {
+    background-color: #F5F7FA;
+    border-radius: 8px;
+    padding: 20px 10px;
+    width: 45%;
+    text-align: center;
+}
+
+.reason-img-area {
+    margin-bottom: 10px;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.reason-icon-img {
+    max-height: 100%;
+}
+
+.reason-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.reason-plus {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #999;
+}
+
+.reason-arrow-down {
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.reason-result-box {
+    background-color: var(--primary-accent);
+    /* 薄い赤背景 */
+    border: 1px solid #FFCDD2;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.result-main {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.text-red-strong {
+    color: var(--primary-red);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.result-sub {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* =========================================
+   6. 導入 & 理由 (調整版)
+   ========================================= */
+.intro-section {
+    padding: 20px 20px 60px;
+    /* 上下の余白を広げてセクションを独立させる */
+}
+
+.intro-box {
+    margin-bottom: 50px;
+}
+
+.intro-text {
+    font-size: 1.3rem;
+    /* 少し大きく */
+    line-height: 2.2;
+    /* 行間を広げて読みやすく */
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-black);
+}
+
+/* 重要なテキストへのマーカーデザイン */
+.text-marker {
+    /* 蛍光ペンで引いたようなグラデーション */
+    background: linear-gradient(transparent 60%, rgba(255, 235, 59, 0.6) 60%);
+    padding: 0 4px;
+    display: inline-block;
+    line-height: 1.3;
+}
+
+/* 理由セクション内の結果テキストへの下線 */
+.text-red-strong {
+    color: var(--primary-red);
+    font-size: 1.6rem;
+    font-weight: 900;
+    /* 波打つような下線デザイン */
+    text-decoration: underline cubic-bezier(0.4, 0, 0.2, 1) deco-red 3px;
+    text-underline-offset: 8px;
+}
+
+.result-sub {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin-top: 10px;
+    /* 細いマーカー */
+    border-bottom: 2px solid var(--primary-accent);
+    display: inline-block;
+}
+
+/* カード内の余白調整 */
+.reason-container {
+    padding: 50px 30px;
+    /* 内部の余白をたっぷり取る */
+    margin-top: 20px;
+}
+
+.reason-title {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+/* スマホ対応の微調整 */
+@media (max-width: 600px) {
+    .intro-text {
+        font-size: 1.15rem;
+        line-height: 2;
+    }
+
+    .text-red-strong {
+        font-size: 1.4rem;
+    }
+}
+
+/* =========================================
+   6. 導入 & 理由 (図解ロジック版)
+   ========================================= */
+
+/* 外枠のカード */
+.reason-container.pop-card {
+    background: #fff;
+    border: 3px solid #F0F0F0;
+    border-radius: 24px;
+    padding: 50px 30px 40px;
+    margin: 40px auto 60px;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+/* 左上のCHECKリボン */
+.ribbon-top-left {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: #333;
+    color: #fff;
+    padding: 8px 15px;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    border-radius: 5px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.reason-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 理由のカード並び */
+.reason-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.reason-card {
+    flex: 1;
+    background: #F9FAFB;
+    border: 1px solid #EEE;
+    border-radius: 16px;
+    padding: 25px 10px;
+    transition: all 0.3s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-red);
+    background: #FFF;
+}
+
+/* アイコン円形 */
+.reason-icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #FFF;
+    border: 2px solid var(--primary-accent);
+    color: var(--primary-red);
+    font-size: 1.8rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.reason-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--text-black);
+}
+
+.reason-plus {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #DDD;
+    padding: 0 5px;
+}
+
+/* 矢印アニメーション */
+.reason-arrow-down {
+    color: var(--primary-red);
+    font-size: 1.8rem;
+    margin: 15px 0;
+    animation: bounceDown 2s infinite;
+}
+
+@keyframes bounceDown {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+/* 結論ボックス (赤背景で強調) */
+.reason-result-box.bounce-box {
+    background: var(--primary-red);
+    color: #fff;
+    padding: 30px 20px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(211, 47, 47, 0.2);
+}
+
+/* 結論ボックス内のテキスト調整 */
+.reason-result-box .result-main {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.reason-result-box .text-red-strong {
+    color: #FFF;
+    /* 背景が赤なので文字は白に */
+    font-size: 1.8rem;
+    text-decoration: none;
+    /* 下線解除（背景色で十分目立つため） */
+    display: block;
+    margin-top: 5px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.reason-result-box .result-sub {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .reason-flow {
+        flex-direction: column;
+    }
+
+    .reason-card {
+        width: 100%;
+    }
+
+    .reason-plus {
+        padding: 10px 0;
+        transform: rotate(90deg);
+        /* 縦並びの時はプラスを回すか消す */
+    }
+}
+
+/* =========================================
+   7. 対象者 (チェックリスト)
+   ========================================= */
+.target-section {
+    background-color: #FAFAFA;
+    padding: 20px 20px 60px;
+}
+
+.check-list-custom {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 40px;
+    max-width: 600px;
+}
+
+.check-list-custom li {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    border-radius: 50px;
+    /* 角丸のピル型 */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    transform: none !important;
+    /* 回転削除 */
+}
+
+/* チェックアイコン */
+.check-list-custom li::before {
+    content: '✔';
+    display: inline-block;
+    color: var(--bg-white);
+    background-color: var(--primary-red);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 0.8rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+
+.check-list-custom li::after {
+    display: none;
+}
+
+/* 尻尾削除 */
+
+.img-people {
+    width: 260px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   8. 適用条件
+   ========================================= */
+.condition-section {
+    padding: 0 20px;
+}
+
+.condition-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 550px;
+    margin: 0 auto 40px;
+}
+
+/* ポップなカードデザイン（HTMLのクラス名に対応） */
+.condition-card-pop {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    /* 浮き上がるような立体感のある影 */
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.05), 0 5px 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid #F4F6F8;
+    transition: transform 0.2s ease;
+}
+
+.condition-card-pop:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-accent);
+}
+
+/* 数字の丸デザイン */
+.cond-num-circle {
+    width: 46px;
+    height: 46px;
+    background-color: var(--primary-accent);
+    /* 薄い赤背景 */
+    color: var(--primary-red);
+    font-weight: 900;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border: 2px solid #FFCDD2;
+}
+
+.condition-text-m {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-black);
+}
+
+/* エリア補足ボックス */
+.area-supplement-box {
+    background-color: #fff;
+    border: 2px dashed #FFCDD2;
+    /* 赤っぽい破線に変更 */
+    border-radius: 12px;
+    padding: 25px;
+    margin: 0 auto;
+    max-width: 550px;
+    text-align: center;
+}
+
+.area-supp-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-black);
+}
+
+.icon-map {
+    font-size: 1.4rem;
+}
+
+.area-supp-content {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.area-highlight {
+    color: var(--primary-red);
+    background: linear-gradient(transparent 70%, #FFEBEE 70%);
+    /* 下部マーカー風 */
+    padding: 0 4px;
+}
+
+.area-sep {
+    margin: 0 10px;
+    color: #ccc;
+    font-weight: normal;
+}
+
+.area-normal {
+    color: var(--text-black);
+}
+
+.area-small {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--text-gray);
+    margin-left: 2px;
+}
+
+.area-supp-note {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/* =========================================
+   9. 施工事例 (Clean Card)
+   ========================================= */
+.case-section {
+    padding: 0 20px;
+}
+
+.case-card {
+    background: var(--bg-white);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 40px;
+    margin: 0 auto 40px;
+    max-width: 650px;
+    text-align: left;
+}
+
+.case-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.case-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.badge-red,
+.badge-gray {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+.badge-red {
+    background-color: var(--primary-red);
+}
+
+.badge-gray {
+    background-color: #555;
+}
+
+.case-title {
+    font-size: 1.4rem;
+    color: var(--text-black);
+    margin: 0 0 5px;
+    font-weight: 700;
+    border: none;
+}
+
+.case-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.case-visual {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.case-img-box {
+    width: 45%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+    transform: none !important;
+}
+
+.label-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.label-tag.tag-red {
+    background: var(--primary-red);
+    left: auto;
+    right: 10px;
+}
+
+.case-arrow {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.arrow-circle {
+    width: 30px;
+    height: 30px;
+    background: #eee;
+    color: #999;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.case-voice {
+    background-color: #F9F9F9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.voice-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 8px;
+}
+
+.voice-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-black);
+    margin: 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .case-card {
+        padding: 20px;
+    }
+
+    .case-visual {
+        flex-direction: column;
+    }
+
+    .case-img-box {
+        width: 100%;
+    }
+
+    .case-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+}
+
+/* =========================================
+   10. ご利用の流れ (Vertical Timeline)
+   ========================================= */
+.flow-section {
+    padding: 0 20px;
+}
+
+.flow-container {
+    max-width: 600px;
+    margin: 0 auto;
+    /* 枠線などはなくし、シンプルに */
+}
+
+.flow-step {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.step-marker-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    width: 40px;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-red);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(211, 47, 47, 0.4);
+}
+
+.step-line {
+    flex-grow: 1;
+    width: 2px;
+    background-color: #E0E0E0;
+    min-height: 40px;
+}
+
+.step-last .step-line {
+    display: none;
+}
+
+.step-content {
+    padding-bottom: 40px;
+    flex: 1;
+    text-align: left;
+}
+
+.step-last .step-content {
+    padding-bottom: 0;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--text-black);
+}
+
+.step-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.note-highlight {
+    color: var(--primary-red);
+    font-weight: 700;
+}
+
+/* =========================================
+   11. よくある質問 (Accordion Style List)
+   ========================================= */
+.faq-section {
+    padding: 0 20px 80px;
+}
+
+.faq-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 20px;
+    text-align: left;
+    transition: box-shadow 0.2s;
+}
+
+.faq-item:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 質問 */
+.faq-question {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.faq-q-icon {
+    color: var(--primary-red);
+    font-weight: 900;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    line-height: 1.4;
+}
+
+.faq-q-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* 回答 */
+.faq-answer {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 28px;
+    /* アイコン分ずらす */
+}
+
+.faq-a-icon {
+    display: none;
+    /* シンプルにするためアイコン非表示 */
+}
+
+.faq-a-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* =========================================
+   12. フッター
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+}
+
+.footer-logo {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+footer small {
+    color: #999;
+}
+
+/* =========================================
+   4. メインビジュアル (サイズ調整版)
+   ========================================= */
+
+/* ...中略... */
+
+.img-hero-main {
+    width: 100%;
+    height: auto;
+
+    /* ▼▼▼ ここでサイズを調整 ▼▼▼ */
+
+    /* 変更前: 550px */
+    /* max-width: 550px; */
+
+    /* 変更後: 大きくする（例: 800px または 100%） */
+    max-width: 800px;
+
+    /* 必要であれば高さの制限も緩める（例: 70vh → 85vh） */
+    max-height: 85vh;
+
+    /* アスペクト比を維持 */
+    object-fit: contain;
+
+    /* 中央揃え */
+    margin: 0 auto;
+
+    /* 装飾 */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+    animation: fadeInUp 1.0s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
