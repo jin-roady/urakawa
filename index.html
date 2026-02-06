@@ -2,339 +2,231 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>浦川塗装店 ご近所割キャンペーン LP</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浦川塗装店 LP デザイン比較</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* ===== 固定ヘッダー ===== */
+        .switcher-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: #1a1a2e;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .switcher-title {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-switch {
+            padding: 10px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            position: relative;
+            color: rgba(255, 255, 255, 0.5);
+            background: transparent;
+            white-space: nowrap;
+        }
+
+        .btn-switch:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-switch:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-switch.active {
+            color: #fff;
+        }
+
+        .btn-switch[data-version="A"].active {
+            background: #D32F2F;
+        }
+
+        .btn-switch[data-version="B"].active {
+            background: #3D5A80;
+        }
+
+        .btn-switch[data-version="C"].active {
+            background: #1B3456;
+        }
+
+        .version-desc {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 12px;
+            margin-left: auto;
+            text-align: right;
+            line-height: 1.5;
+            min-width: 200px;
+        }
+
+        .version-desc strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ===== カラーパレット表示 ===== */
+        .palette {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-left: 12px;
+        }
+
+        .palette-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        /* ===== iframe ===== */
+        .preview-frame {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: none;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 800px) {
+            .switcher-bar {
+                flex-wrap: wrap;
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .switcher-title {
+                display: none;
+            }
+
+            .btn-switch {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .version-desc {
+                width: 100%;
+                text-align: left;
+                margin-left: 0;
+                font-size: 11px;
+            }
+
+            .palette {
+                margin-left: 0;
+            }
+
+            .preview-frame {
+                top: 90px;
+                height: calc(100vh - 90px);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">
-      <span>地元密着・信頼施工</span>
-      有限会社 浦川塗装店
+    <div class="switcher-bar">
+        <span class="switcher-title">DESIGN</span>
+        <div class="btn-group">
+            <button class="btn-switch active" data-version="A" data-src="index3.html">A：オリジナル</button>
+            <button class="btn-switch" data-version="B" data-src="index4.html">B：テクスチャ版</button>
+            <button class="btn-switch" data-version="C" data-src="index4b.html">C：フラット版</button>
+        </div>
+        <div class="palette" id="palette"></div>
+        <div class="version-desc" id="desc"></div>
     </div>
-    <div style="font-size:1.5rem; cursor:pointer; color:var(--primary-red);">|||</div>
-  </header>
 
-  <div class="container">
+    <iframe class="preview-frame" id="preview" src="index3.html"></iframe>
 
-    <aside class="section-hero">
+    <script>
+        const versions = {
+            A: {
+                desc: '<strong>オリジナル</strong>：現行デザイン（赤ベース）',
+                palette: ['#D32F2F', '#B71C1C', '#FFD54F', '#4CAF50', '#2196F3']
+            },
+            B: {
+                desc: '<strong>テクスチャ版</strong>：ロゴカラー5色 ＋ 塗り壁テクスチャ',
+                palette: ['#E85A5A', '#3D5A80', '#F2A4C0', '#7DD9C8', '#F2D260']
+            },
+            C: {
+                desc: '<strong>フラット版</strong>：ロゴカラー5色 ＋ はっきりした配色',
+                palette: ['#D92020', '#1B3456', '#EC6699', '#2CC8A8', '#EDBA00']
+            }
+        };
 
-      <div class="left-banner-wrap">
-        <img src="images/hero-left.png" alt="左側バナー画像">
-      </div>
+        const buttons = document.querySelectorAll('.btn-switch');
+        const preview = document.getElementById('preview');
+        const paletteEl = document.getElementById('palette');
+        const descEl = document.getElementById('desc');
 
-    </aside>
+        function switchVersion(btn) {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    <main class="section-content">
+            const ver = btn.dataset.version;
+            const src = btn.dataset.src;
 
-      <div class="title-area-visual">
-        <img src="images/hero.png" alt="ご近所割" class="img-title-vertical">
+            // iframe切り替え
+            preview.src = src;
 
-        <div class="illustration-single">
-          <img src="images/fv_illustration.png" alt="メインイラスト" class="img-fv-single">
+            // パレット更新
+            paletteEl.innerHTML = versions[ver].palette
+                .map(c => `<span class="palette-dot" style="background:${c}"></span>`)
+                .join('');
 
-          <!-- <div class="fv-catchphrase">
-            <span class="text-red">揃って塗れば、福来たる。</span><br>
-            <span class="text-sub">同時施工で、お得に塗り替え。</span>
-          </div> -->
-        </div>
-      </div>
-      <div class="intro-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_red.png" alt="赤ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-white">ご近所割とは</h2>
-        </div>
-        <p class="intro-text">
-          <span class="text-marker-gold">近隣で同時に</span><br>
-          塗装工事を行うことで、<br>
-          <span class="text-marker-gold">費用を抑えられる</span><br>
-          仕組みです。
-        </p>
-        <div class="reason-container">
-          <h3 class="reason-title">
-            なぜ、同時施工だとお得なのか
-          </h3>
+            // 説明更新
+            descEl.innerHTML = versions[ver].desc;
+        }
 
-          <div class="reason-flow">
-            <div class="reason-card">
-              <div class="reason-img-area">
-                <img src="images/icon_scaffold.png" alt="足場" class="reason-icon-img">
-              </div>
-              <p class="reason-text">
-                足場の運搬・組立を<br>
-                一度で完結
-              </p>
-            </div>
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => switchVersion(btn));
+        });
 
-            <div class="reason-plus">＋</div>
-
-            <div class="reason-card">
-              <div class="reason-img-area">
-                <img src="images/icon_transport.png" alt="トラック" class="reason-icon-img">
-              </div>
-              <p class="reason-text">
-                職人・資材の<br>
-                移動コスト削減
-              </p>
-            </div>
-          </div>
-
-          <div class="reason-arrow-down">▼</div>
-
-          <div class="reason-result-box">
-            <p class="result-main">
-              削減したコストを、<br class="sp-only">
-              <span class="text-red-strong">施工価格へ還元</span>
-            </p>
-            <p class="result-sub">
-              ＝ 同時施工で、無理なく適正価格に
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="target-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_gold.png" alt="金ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-black">こんな方に向いています</h2>
-        </div>
-        <ul class="check-list-custom">
-          <li>「そろそろウチも、塗り替え時期かなぁ…」</li>
-          <li>「きっかけがないと、つい後回しにしちゃう」</li>
-          <li>「どうせやるなら、少しでも安く済ませたい！」</li>
-        </ul>
-        <img src="images/people.png" alt="相談する人々" class="img-people">
-      </div>
-
-      <div class="condition-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_red.png" alt="赤ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-white">適用条件</h2>
-        </div>
-        <div class="condition-img-box">
-          <img src="images/condition_frame.png" alt="枠" class="condition-frame">
-          <span class="condition-text pos-1">対象エリア内であること</span>
-        </div>
-        <div class="condition-img-box">
-          <img src="images/condition_frame_2.png" alt="枠と家" class="condition-frame">
-          <span class="condition-text pos-2">2軒以上で同時期に<br>着工可能なこと</span>
-        </div>
-        <div class="condition-img-box">
-          <img src="images/condition_frame_3.png" alt="枠とペンキ" class="condition-frame">
-          <span class="condition-text pos-3">戸建て住宅であること</span>
-        </div>
-        <div class="condition-section">
-          <div class="area-supplement-box">
-            <h3 class="area-supp-title">
-              <span class="icon-map">📍</span>対象エリア
-            </h3>
-            <div class="area-supp-content">
-              <span class="area-highlight">鳥取県中部</span>
-              <span class="area-sep">・</span>
-              <span class="area-normal">岡山県北<span class="area-small">（一部エリア）</span></span>
-            </div>
-            <p class="area-supp-note">※詳しくはお問い合わせください。</p>
-          </div>
-        </div>
-      </div>
-      <div class="case-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_gold.png" alt="金ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-black">ご近所割 適用事例</h2>
-        </div>
-
-        <div class="case-card">
-          <div class="case-header">
-            <div class="case-badges">
-              <span class="badge-red">CASE.01</span>
-              <span class="badge-gold">2軒同時施工パターン</span>
-            </div>
-            <h3 class="case-title">
-              倉吉市 A様・B様邸の場合
-              <span class="case-subtitle">〜お隣同士で時期を合わせて、足場代を大幅カット〜</span>
-            </h3>
-          </div>
-
-          <div class="case-visual">
-            <div class="case-img-box before">
-              <img src="images/before-1.jpg" alt="施工前">
-              <span class="label-tag">施工前</span>
-            </div>
-            <div class="case-arrow">
-              <span class="arrow-text">同時<br>施工</span>
-              <span class="arrow-shape">▶</span>
-            </div>
-            <div class="case-img-box after">
-              <img src="images/after-1.jpg" alt="施工後">
-              <span class="label-tag tag-red">施工完了</span>
-            </div>
-          </div>
-
-          <div class="case-voice">
-            <div class="voice-icon">お客様の声</div>
-            <p class="voice-text">
-              「お隣さんと一緒にやることで、<span
-                class="text-marker-gold">足場を架ける回数が減り、その分費用が安くなる</span>と聞いて決心しました。色味の相談も一緒にできて楽しかったですし、2軒並んで新築のように蘇って、街並みごと明るくなりました！」
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="flow-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_red.png" alt="赤ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-white">ご利用の流れ</h2>
-        </div>
-
-        <div class="flow-container">
-          <div class="flow-step">
-            <div class="step-marker-col">
-              <div class="step-circle">
-                <img src="images/num1.png" alt="1" class="step-num-img">
-              </div>
-              <div class="step-arrow"></div>
-            </div>
-            <div class="step-content">
-              <div class="step-text-area">
-                <h3 class="step-title">お問い合わせ</h3>
-                <p class="step-desc">
-                  まずは代表者様よりお電話・メールにてご連絡ください。<br>
-                  「近所と一緒に検討中」とお伝え頂くとスムーズです。
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flow-step">
-            <div class="step-marker-col">
-              <div class="step-circle">
-                <img src="images/num2.png" alt="2" class="step-num-img">
-              </div>
-              <div class="step-arrow"></div>
-            </div>
-            <div class="step-content">
-              <div class="step-text-area">
-                <h3 class="step-title">現場調査</h3>
-                <p class="step-desc">
-                  対象となる建物をまとめて診断いたします。<br>
-                  皆様のご要望や劣化状況をしっかり確認します。
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flow-step">
-            <div class="step-marker-col">
-              <div class="step-circle">
-                <img src="images/num3.png" alt="3" class="step-num-img">
-              </div>
-              <div class="step-arrow"></div>
-            </div>
-            <div class="step-content">
-              <div class="step-text-area">
-                <h3 class="step-title">見積もり</h3>
-                <p class="step-desc">
-                  同時施工によるコスト削減分を反映した、<br>
-                  <span class="note-highlight">ご近所割・特別プラン</span>をご提示します。
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flow-step step-last">
-            <div class="step-marker-col">
-              <div class="step-circle">
-                <img src="images/num4.png" alt="4" class="step-num-img">
-              </div>
-            </div>
-            <div class="step-content">
-              <div class="step-text-area">
-                <h3 class="step-title">着工</h3>
-                <p class="step-desc">
-                  スケジュールを合わせて同時に工事スタート。<br>
-                  足場組立などを効率化し、スピーディに完了します。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="faq-section">
-        <div class="brush-heading-wrap">
-          <img src="images/brush_gold.png" alt="金ブラシ背景" class="brush-bg">
-          <h2 class="brush-text text-black">よくあるご質問</h2>
-        </div>
-
-        <div class="faq-container">
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <span class="faq-q-icon">Q</span>
-              <h3 class="faq-q-text">お隣と「同じ色」にしないといけませんか？</h3>
-            </div>
-            <div class="faq-answer">
-              <span class="faq-a-icon">A</span>
-              <p class="faq-a-text">
-                いいえ、<span class="text-marker-gold">お好きな色をそれぞれお選びいただけます。</span><br>
-                デザインや塗料の種類も、一軒ごとに最適なプランをご提案しますのでご安心ください。
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <span class="faq-q-icon">Q</span>
-              <h3 class="faq-q-text">着工時期が少しズレてしまいそうなのですが…</h3>
-            </div>
-            <div class="faq-answer">
-              <span class="faq-a-icon">A</span>
-              <p class="faq-a-text">
-                基本的には「足場の組立」などのタイミングを合わせることで割引が可能になります。<br>
-                多少のスケジュールのズレは調整可能な場合もございますので、まずはお気軽にご相談ください。
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <span class="faq-q-icon">Q</span>
-              <h3 class="faq-q-text">安くなる分、手抜き工事になりませんか？</h3>
-            </div>
-            <div class="faq-answer">
-              <span class="faq-a-icon">A</span>
-              <p class="faq-a-text">
-                一切ございません。<br>
-                今回の割引は「移動コスト」や「足場運搬費」といった<span
-                  class="text-marker-gold">経費の削減によるもの</span>です。職人の手間や塗料の質はそのままに、適正価格よりお得に施工いたします。
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <footer
-        style="text-align:center; padding:30px 20px; font-size:0.9rem; border-top:3px double var(--primary-red); margin-top:40px; background:rgba(255,255,255,0.8);">
-        <div style="margin-bottom:10px; font-weight:bold;">有限会社 浦川塗装店</div>
-        &copy; 2026 Urakawa Painting Co., Ltd. All Rights Reserved.
-      </footer>
-
-    </main>
-
-    <nav class="section-nav">
-      <a href="#" class="nav-btn"><span>キャンペーンTOP</span></a>
-      <a href="#" class="nav-btn"><span>ご近所割の仕組み</span></a>
-      <a href="#" class="nav-btn"><span>施工事例</span></a>
-      <a href="#" class="nav-btn"><span>施工メニュー絵巻</span></a>
-      <a href="#" class="nav-btn"><span>無料お見積り依頼</span></a>
-      <a href="#" class="nav-btn" style="background-color:#5a4e4b;"><span>お問い合わせ</span></a>
-    </nav>
-
-  </div>
+        // 初期表示
+        switchVersion(document.querySelector('.btn-switch.active'));
+    </script>
 
 </body>
 
