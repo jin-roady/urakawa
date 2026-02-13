@@ -1992,6 +1992,7 @@ header {
    ========================================= */
 .case-section {
     padding: 0 20px 50px;
+    background: url('images/case-background.png') center / 100% 100% no-repeat;
 }
 
 .case-card {
