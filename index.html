@@ -87,6 +87,10 @@
             background: #1B3456;
         }
 
+        .btn-switch[data-version="D"].active {
+            background: #E53935;
+        }
+
         .version-desc {
             color: rgba(255, 255, 255, 0.45);
             font-size: 12px;
@@ -173,6 +177,7 @@
             <button class="btn-switch active" data-version="A" data-src="index3.html">A：オリジナル</button>
             <button class="btn-switch" data-version="B" data-src="index4.html">B：テクスチャ版</button>
             <button class="btn-switch" data-version="C" data-src="index4b.html">C：フラット版</button>
+            <button class="btn-switch" data-version="D" data-src="index5.html">D：修正版</button>
         </div>
         <div class="palette" id="palette"></div>
         <div class="version-desc" id="desc"></div>
@@ -193,6 +198,10 @@
             C: {
                 desc: '<strong>フラット版</strong>：ロゴカラー5色 ＋ はっきりした配色',
                 palette: ['#D92020', '#1B3456', '#EC6699', '#2CC8A8', '#EDBA00']
+            },
+            D: {
+                desc: '<strong>修正版</strong>：オリジナルベース ＋ デザイン調整',
+                palette: ['#D32F2F', '#B71C1C', '#FFD54F', '#4CAF50', '#2196F3']
             }
         };
 
