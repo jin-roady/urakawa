@@ -2517,6 +2517,7 @@ footer small {
     margin: 0 0 14px;
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
 }
 
 .quality-closing-main {
