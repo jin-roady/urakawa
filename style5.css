@@ -1603,7 +1603,7 @@ header {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    background: var(--primary-red);
+    background: #3D8EB9;
     color: #fff;
     border-radius: 10px;
     padding: 16px 20px;
@@ -1625,7 +1625,7 @@ header {
 }
 
 .quality-point-box strong {
-    color: #FFD54F !important;
+    color: #FFF8E7 !important;
     font-weight: 900;
     border-bottom: none !important;
 }
@@ -1993,6 +1993,11 @@ header {
 .case-section {
     padding: 0 20px 50px;
     background: url('images/case-background.png') center / 100% 100% no-repeat;
+}
+
+.case-section .ribbon-style .brush-text {
+    background-color: #3D8EB9;
+    box-shadow: 0 5px 15px rgba(61, 142, 185, 0.4);
 }
 
 .case-card {
@@ -2392,7 +2397,7 @@ header {
    16. 最終CTA
    ========================================= */
 .final-cta-section {
-    background: linear-gradient(135deg, var(--primary-red) 0%, #B71C1C 100%);
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
     padding: 50px 20px;
     text-align: center;
 }
@@ -2441,7 +2446,7 @@ header {
 
 .final-cta-btn.primary {
     background: #fff;
-    color: var(--primary-red);
+    color: #2E7D32;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
 }
 
@@ -2451,17 +2456,15 @@ header {
 }
 
 .final-cta-btn.tel {
-    background: #2E7D32;
-    color: #fff;
-    border: 2px solid #2E7D32;
-    box-shadow: 0 5px 16px rgba(46, 125, 50, 0.3);
+    background: #fff;
+    color: #2E7D32;
+    border: none;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
 }
 
 .final-cta-btn.tel:hover {
-    background: #1B5E20;
-    border-color: #1B5E20;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 600px) {
@@ -2509,7 +2512,7 @@ footer small {
     max-width: 580px;
     padding: 30px 28px;
     text-align: center;
-    background: var(--primary-red);
+    background: #3D8EB9;
     border-radius: 14px;
 }
 
@@ -2517,7 +2520,7 @@ footer small {
     line-height: 2;
     margin: 0 0 14px;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 700;
 }
 
@@ -2528,10 +2531,11 @@ footer small {
 
 .quality-closing-main strong {
     font-size: 1.45em;
-    color: #FFD54F;
+    color: #FFF8E7;
     font-weight: 900;
     padding: 0 4px;
     letter-spacing: 0.05em;
+    border-bottom: none;
 }
 
 .marker-pink .quality-closing-main strong,
