@@ -22,6 +22,8 @@
         <span class="marker-switcher-label">下線カラー：</span>
         <button class="marker-btn active" data-marker="pink">ピンク</button>
         <button class="marker-btn" data-marker="yellow">イエロー</button>
+        <button class="marker-btn" data-marker="green">グリーン</button>
+        <button class="marker-btn" data-marker="blue">ブルー</button>
     </div>
 
     <header>
@@ -251,7 +253,8 @@
                         <div class="selfcheck-card-content">
                             <h3 class="selfcheck-card-title">壁と壁のつなぎ目がひび割れている</h3>
                             <p class="selfcheck-card-desc">
-                                <strong>外壁のパネルとパネルの間や外壁とサッシの間にあるゴム状のつなぎ目（目地）</strong>に、ひび割れや隙間はありませんか？<br class="pc-only">ここから雨漏りにつながることもあります。
+                                <strong>外壁のパネルとパネルの間や外壁とサッシの間にあるゴム状のつなぎ目（目地）</strong>に、ひび割れや隙間はありませんか？<br
+                                    class="pc-only">ここから雨漏りにつながることもあります。
                             </p>
                         </div>
                     </div>
@@ -264,7 +267,8 @@
                         <div class="selfcheck-card-content">
                             <h3 class="selfcheck-card-title">雨どい・屋根まわりの色褪せ・錆び</h3>
                             <p class="selfcheck-card-desc">
-                                雨どいや屋根の端の板など、<strong>外壁以外の部分</strong>も色褪せたり錆びたりしていませんか？<br class="pc-only">こうした部分も一緒にメンテナンスできます。
+                                雨どいや屋根の端の板など、<strong>外壁以外の部分</strong>も色褪せたり錆びたりしていませんか？<br
+                                    class="pc-only">こうした部分も一緒にメンテナンスできます。
                             </p>
                         </div>
                     </div>
@@ -320,7 +324,8 @@
                             <div class="quality-analogy-box">
                                 <div class="analogy-label">💡 わかりやすく例えると</div>
                                 <p class="analogy-text">
-                                    下地づくりは<strong>「化粧下地」</strong>のようなもの。<br class="pc-only">下地が整っていなければ、どれだけ高価なファンデーション（＝高級塗料）を使っても、仕上がりも持ちも良くなりません。
+                                    下地づくりは<strong>「化粧下地」</strong>のようなもの。<br
+                                        class="pc-only">下地が整っていなければ、どれだけ高価なファンデーション（＝高級塗料）を使っても、仕上がりも持ちも良くなりません。
                                 </p>
                             </div>
 
@@ -569,7 +574,8 @@
                         <div class="step-content box-style">
                             <h3 class="step-title">着工</h3>
                             <p class="step-desc">
-                                着工から施工完了まではおおむね<span class="note-highlight">1ヶ月〜1ヶ月半</span>ほど。天候の状況や建物の大きさにもよりますので、あくまで目安となります。
+                                着工から施工完了まではおおむね<span
+                                    class="note-highlight">1ヶ月〜1ヶ月半</span>ほど。天候の状況や建物の大きさにもよりますので、あくまで目安となります。
                             </p>
                         </div>
                     </div>
@@ -648,7 +654,9 @@
 
             <!-- フッター -->
             <footer>
-                <div class="footer-logo"><img src="images/logo.png" alt="有限会社 浦川塗装店"></div>
+                <div class="footer-logo">
+                    <img src="images/logo_sp.png" alt="有限会社 浦川塗装店">
+                </div>
                 <small>&copy; 2026 Urakawa Painting Co., Ltd.</small>
             </footer>
 
@@ -762,7 +770,7 @@
                 markerBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const mode = this.dataset.marker;
-                document.body.classList.remove('marker-pink', 'marker-yellow');
+                document.body.classList.remove('marker-pink', 'marker-yellow', 'marker-green', 'marker-blue');
                 document.body.classList.add('marker-' + mode);
             });
         });

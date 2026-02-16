@@ -129,6 +129,16 @@ img {
     color: #333;
 }
 
+.marker-btn[data-marker="green"].active {
+    background: #66BB6A;
+    color: #fff;
+}
+
+.marker-btn[data-marker="blue"].active {
+    background: #42A5F5;
+    color: #fff;
+}
+
 @media (max-width: 900px) {
     .marker-switcher {
         bottom: 80px;
@@ -612,7 +622,7 @@ header {
 /* FV上の赤ライン */
 .fv-top-red-line {
     width: 100%;
-    height: 5px;
+    height: 8px;
     background: var(--primary-red);
 }
 
@@ -755,6 +765,14 @@ header {
     background: linear-gradient(transparent 60%, rgba(255, 235, 59, 0.6) 60%);
 }
 
+.marker-green .text-marker {
+    background: linear-gradient(transparent 60%, rgba(102, 187, 106, 0.5) 60%);
+}
+
+.marker-blue .text-marker {
+    background: linear-gradient(transparent 60%, rgba(66, 165, 245, 0.45) 60%);
+}
+
 .text-marker-red {
     padding: 0 4px;
     display: inline;
@@ -768,6 +786,14 @@ header {
 
 .marker-yellow .text-marker-red {
     background: linear-gradient(transparent 60%, rgba(255, 235, 59, 0.6) 60%);
+}
+
+.marker-green .text-marker-red {
+    background: linear-gradient(transparent 60%, rgba(102, 187, 106, 0.5) 60%);
+}
+
+.marker-blue .text-marker-red {
+    background: linear-gradient(transparent 60%, rgba(66, 165, 245, 0.45) 60%);
 }
 
 .sp-only {
@@ -1470,7 +1496,7 @@ header {
 }
 
 .warning-text strong {
-    color: var(--text-black);
+    color: var(--primary-red);
 }
 
 /* =========================================
@@ -1516,20 +1542,22 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #fff;
+    background: var(--primary-red);
     padding: 22px 24px 14px;
-    border-bottom: 2px solid #F0F0F0;
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
 }
 
 .quality-card-icon {
     font-size: 1.3rem;
     flex-shrink: 0;
+    filter: brightness(0) invert(1);
 }
 
 .quality-card-title {
     font-size: 1.15rem;
     font-weight: 900;
-    color: var(--text-black);
+    color: #fff;
     margin: 0;
 }
 
@@ -1569,6 +1597,14 @@ header {
     border-bottom: 2px solid rgba(255, 235, 59, 0.8);
 }
 
+.marker-green .quality-card-body strong {
+    border-bottom: 2px solid rgba(102, 187, 106, 0.7);
+}
+
+.marker-blue .quality-card-body strong {
+    border-bottom: 2px solid rgba(66, 165, 245, 0.6);
+}
+
 /* --- 例え話ボックス --- */
 .quality-analogy-box {
     background: #F8F9FA;
@@ -1603,8 +1639,9 @@ header {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    background: #3D8EB9;
-    color: #fff;
+    background: #FFF3E0;
+    border: 2px solid #FFE0B2;
+    color: var(--text-black);
     border-radius: 10px;
     padding: 16px 20px;
     margin-top: 18px;
@@ -1617,7 +1654,7 @@ header {
 }
 
 .quality-point-box p {
-    color: #fff !important;
+    color: var(--text-black) !important;
     font-weight: 700;
     font-size: 0.92rem !important;
     margin: 0 !important;
@@ -1625,13 +1662,15 @@ header {
 }
 
 .quality-point-box strong {
-    color: #FFF8E7 !important;
+    color: var(--primary-red) !important;
     font-weight: 900;
     border-bottom: none !important;
 }
 
 .marker-pink .quality-point-box strong,
-.marker-yellow .quality-point-box strong {
+.marker-yellow .quality-point-box strong,
+.marker-green .quality-point-box strong,
+.marker-blue .quality-point-box strong {
     border-bottom: none !important;
 }
 
@@ -1949,6 +1988,14 @@ header {
     background: linear-gradient(transparent 70%, rgba(255, 235, 59, 0.5) 70%);
 }
 
+.marker-green .area-highlight {
+    background: linear-gradient(transparent 70%, rgba(102, 187, 106, 0.5) 70%);
+}
+
+.marker-blue .area-highlight {
+    background: linear-gradient(transparent 70%, rgba(66, 165, 245, 0.4) 70%);
+}
+
 .area-sep {
     margin: 0 8px;
     color: #ccc;
@@ -1992,12 +2039,6 @@ header {
    ========================================= */
 .case-section {
     padding: 0 20px 50px;
-    background: url('images/case-background.png') center / 100% 100% no-repeat;
-}
-
-.case-section .ribbon-style .brush-text {
-    background-color: #3D8EB9;
-    box-shadow: 0 5px 15px rgba(61, 142, 185, 0.4);
 }
 
 .case-card {
@@ -2363,13 +2404,14 @@ header {
 }
 
 .mid-cta-btn.tel {
-    background: #fff;
-    color: #2E7D32;
+    background: #2E7D32;
+    color: #fff;
     border: 2px solid #2E7D32;
 }
 
 .mid-cta-btn.tel:hover {
-    background: #2E7D32;
+    background: #1B5E20;
+    border-color: #1B5E20;
     color: #fff;
     transform: translateY(-2px);
 }
@@ -2397,7 +2439,7 @@ header {
    16. 最終CTA
    ========================================= */
 .final-cta-section {
-    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+    background: linear-gradient(135deg, #333 0%, #444 100%);
     padding: 50px 20px;
     text-align: center;
 }
@@ -2445,26 +2487,28 @@ header {
 }
 
 .final-cta-btn.primary {
-    background: #fff;
-    color: #2E7D32;
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
+    background: var(--primary-red);
+    color: #fff;
+    box-shadow: 0 5px 16px rgba(211, 47, 47, 0.4);
 }
 
 .final-cta-btn.primary:hover {
+    background: #B71C1C;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.5);
 }
 
 .final-cta-btn.tel {
-    background: #fff;
-    color: #2E7D32;
+    background: #2E7D32;
+    color: #fff;
     border: none;
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 16px rgba(46, 125, 50, 0.4);
 }
 
 .final-cta-btn.tel:hover {
+    background: #1B5E20;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.5);
 }
 
 @media (max-width: 600px) {
@@ -2496,11 +2540,17 @@ footer {
     margin-bottom: 8px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 16px;
 }
 
 .footer-logo img {
     height: 40px;
     width: auto;
+}
+
+.footer-ut-logo {
+    height: 36px !important;
 }
 
 footer small {
@@ -2512,7 +2562,8 @@ footer small {
     max-width: 580px;
     padding: 30px 28px;
     text-align: center;
-    background: #3D8EB9;
+    background: var(--primary-red);
+    border: none;
     border-radius: 14px;
 }
 
@@ -2527,11 +2578,12 @@ footer small {
 .quality-closing-main {
     line-height: 1.9;
     margin: 0;
+    color: #fff;
 }
 
 .quality-closing-main strong {
     font-size: 1.45em;
-    color: #FFF8E7;
+    color: #FFD54F;
     font-weight: 900;
     padding: 0 4px;
     letter-spacing: 0.05em;
@@ -2539,6 +2591,8 @@ footer small {
 }
 
 .marker-pink .quality-closing-main strong,
-.marker-yellow .quality-closing-main strong {
+.marker-yellow .quality-closing-main strong,
+.marker-green .quality-closing-main strong,
+.marker-blue .quality-closing-main strong {
     border-bottom: none;
 }
