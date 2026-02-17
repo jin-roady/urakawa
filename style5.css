@@ -632,7 +632,7 @@ header {
 .title-area-visual {
     position: relative;
     width: 100%;
-    padding: 50px 20px;
+    padding: 40px 20px;
     text-align: center;
     box-sizing: border-box;
     overflow: hidden;
@@ -642,7 +642,7 @@ header {
     width: 100%;
     height: auto;
     max-width: 800px;
-    max-height: 85vh;
+    max-height: 75vh;
     object-fit: contain;
     margin: 0 auto;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
@@ -660,12 +660,12 @@ header {
 
 @media (max-width: 600px) {
     .title-area-visual {
-        padding: 16px 12px 12px;
+        padding: 16px 10px 10px;
     }
 
     .img-hero-main {
         max-width: 100%;
-        max-height: none;
+        max-height: 78vh;
     }
 }
 
@@ -1590,19 +1590,19 @@ header {
 }
 
 .marker-pink .quality-card-body strong {
-    border-bottom: 2px solid rgba(255, 205, 210, 0.9);
+    border-bottom: none;
 }
 
 .marker-yellow .quality-card-body strong {
-    border-bottom: 2px solid rgba(255, 235, 59, 0.8);
+    border-bottom: none;
 }
 
 .marker-green .quality-card-body strong {
-    border-bottom: 2px solid rgba(102, 187, 106, 0.7);
+    border-bottom: none;
 }
 
 .marker-blue .quality-card-body strong {
-    border-bottom: 2px solid rgba(66, 165, 245, 0.6);
+    border-bottom: none;
 }
 
 /* --- 例え話ボックス --- */
@@ -2344,12 +2344,11 @@ header {
    15. 中間CTAバー
    ========================================= */
 .mid-cta-bar {
-    margin: 36px auto 0;
-    max-width: calc(100% - 40px);
-    width: 540px;
+    margin: 36px -20px 0;
+    width: calc(100% + 40px);
     background: linear-gradient(135deg, #333 0%, #444 100%);
-    border-radius: 14px;
-    padding: 28px 24px;
+    border-radius: 0;
+    padding: 36px 24px;
     text-align: center;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
@@ -2418,7 +2417,7 @@ header {
 
 @media (max-width: 600px) {
     .mid-cta-bar {
-        padding: 22px 18px;
+        padding: 32px 20px;
     }
 
     .mid-cta-text {
@@ -2441,6 +2440,7 @@ header {
 .final-cta-section {
     background: linear-gradient(135deg, #333 0%, #444 100%);
     padding: 50px 20px;
+    border-radius: 0;
     text-align: center;
 }
 
