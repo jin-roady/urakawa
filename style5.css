@@ -804,6 +804,17 @@ header {
     display: inline;
 }
 
+/* SP時のみ改行（900px以下） */
+.br-sp {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .br-sp {
+        display: block;
+    }
+}
+
 @media (max-width: 600px) {
     .sp-only {
         display: inline;
