@@ -91,6 +91,11 @@
             background: #E53935;
         }
 
+        .btn-switch[data-version="E"].active {
+            background: #F9A825;
+            color: #333;
+        }
+
         .version-desc {
             color: rgba(255, 255, 255, 0.45);
             font-size: 12px;
@@ -178,6 +183,7 @@
             <button class="btn-switch" data-version="B" data-src="index4.html">B：テクスチャ版</button>
             <button class="btn-switch" data-version="C" data-src="index4b.html">C：フラット版</button>
             <button class="btn-switch" data-version="D" data-src="index5.html">D：修正版</button>
+            <button class="btn-switch" data-version="E" data-src="index6.html">E：ペンキ版</button>
         </div>
         <div class="palette" id="palette"></div>
         <div class="version-desc" id="desc"></div>
@@ -202,6 +208,10 @@
             D: {
                 desc: '<strong>修正版</strong>：オリジナルベース ＋ デザイン調整',
                 palette: ['#D32F2F', '#B71C1C', '#FFD54F', '#4CAF50', '#2196F3']
+            },
+            E: {
+                desc: '<strong>ペンキ版</strong>：ペンキ画像見出し ＋ 点線枠交互 ＋ 浦川品質イエロー',
+                palette: ['#D32F2F', '#FFD54F', '#333333', '#FFFFFF', '#4CAF50']
             }
         };
 
