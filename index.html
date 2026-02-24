@@ -150,9 +150,22 @@
                 display: none;
             }
 
+            .btn-group {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                flex-shrink: 0;
+            }
+
+            .btn-group::-webkit-scrollbar {
+                display: none;
+            }
+
             .btn-switch {
                 padding: 8px 14px;
                 font-size: 12px;
+                flex-shrink: 0;
             }
 
             .version-desc {
