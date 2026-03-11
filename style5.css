@@ -1225,7 +1225,7 @@ header {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    text-align: left;
+    text-align: center;
     box-shadow: 0 4px 16px rgba(211, 47, 47, 0.1);
 }
 
@@ -1244,6 +1244,7 @@ header {
     color: var(--text-black);
     margin: 0 0 6px;
     line-height: 1.5;
+    text-align: center;
 }
 
 .highlight-sub {
@@ -1251,6 +1252,7 @@ header {
     color: var(--text-gray);
     margin: 0;
     line-height: 1.6;
+    text-align: center;
 }
 
 /* セルフチェックへの誘導 */
@@ -1305,8 +1307,9 @@ header {
     }
 
     .highlight-main {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         line-height: 1.8;
+        white-space: nowrap;
     }
 
     .highlight-sub {
