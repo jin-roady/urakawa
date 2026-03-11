@@ -762,7 +762,7 @@ header {
 }
 
 .marker-yellow .text-marker {
-    background: linear-gradient(transparent 60%, rgba(255, 235, 59, 0.6) 60%);
+    background: linear-gradient(transparent 55%, rgba(255, 235, 59, 0.75) 55%);
 }
 
 .marker-green .text-marker {
@@ -785,7 +785,7 @@ header {
 }
 
 .marker-yellow .text-marker-red {
-    background: linear-gradient(transparent 60%, rgba(255, 235, 59, 0.6) 60%);
+    background: linear-gradient(transparent 55%, rgba(255, 235, 59, 0.75) 55%);
 }
 
 .marker-green .text-marker-red {
@@ -848,10 +848,18 @@ header {
 
 .intro-text {
     font-size: 1.25rem;
-    line-height: 2.1;
+    line-height: 2.2;
     font-weight: 700;
-    margin: 0 0 16px;
+    margin: 0 0 20px;
     color: var(--text-black);
+}
+
+.intro-text:last-child {
+    margin-bottom: 0;
+}
+
+.intro-text-highlight {
+    font-size: 1.35rem;
 }
 
 .intro-quality-note {
@@ -1581,6 +1589,17 @@ header {
     font-size: 1.3rem;
     flex-shrink: 0;
     filter: brightness(0) invert(1);
+}
+
+.quality-card-icon.quality-icon-img {
+    filter: none;
+    display: flex;
+    align-items: center;
+}
+
+.quality-icon-image {
+    height: 36px;
+    width: auto;
 }
 
 .quality-card-title {
