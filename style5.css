@@ -849,7 +849,7 @@ header {
 .intro-text {
     font-size: 1.25rem;
     line-height: 2.2;
-    font-weight: 700;
+    font-weight: 400;
     margin: 0 0 20px;
     color: var(--text-black);
 }
@@ -860,6 +860,11 @@ header {
 
 .intro-text-highlight {
     font-size: 1.35rem;
+}
+
+.intro-text .text-marker {
+    padding: 2px 6px;
+    font-weight: 900;
 }
 
 .intro-quality-note {
