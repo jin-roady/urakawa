@@ -1071,8 +1071,18 @@ header {
 
 @media (max-width: 600px) {
     .intro-text {
-        font-size: 1.1rem;
-        line-height: 2;
+        font-size: 1rem;
+        line-height: 1.9;
+        text-align: center;
+    }
+
+    .reason-title {
+        font-size: 1.05rem;
+        white-space: nowrap;
+    }
+
+    .reason-image-desc {
+        font-size: 0.85rem;
     }
 
     .intro-quality-note {
@@ -1282,13 +1292,26 @@ header {
     display: inline;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .check-intro-lead {
         font-size: 1.15rem;
+        white-space: nowrap;
     }
 
     .check-intro-desc {
         font-size: 0.9rem;
+        line-height: 1.9;
+        text-align: center;
+    }
+
+    .highlight-main {
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+
+    .highlight-sub {
+        font-size: 0.8rem;
+        line-height: 1.8;
     }
 
     .check-intro-highlight-box {
